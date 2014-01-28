@@ -8,7 +8,8 @@
  
 
    Using Anaconda packaged Python
-   from wave_matlab
+   modifications for confidence intervals based on wave_matlab at
+   http://paos.colorado.edu/research/wavelets/
 """
 
 #Standard packages
