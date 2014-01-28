@@ -63,11 +63,11 @@ Plotting the powerspectrum as a function of scales (log2 base due to implicit FF
 Using Nino3SST seasonal anomalies from the Univ of Colorado matlab code.	
 If plotting normalized data with Variance Contours (like TC_98 fig2a)   
 
-<img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/Nino3SST_varcont_wave2.png" alt="Variance Contoured" width=100%> 
+<img src="images/normalizeddata/Nino3SST_varcont_wave2.png" alt="Variance Contoured" width=100%> 
  
 If plotting normalized data with quartile contours (like wavelet website)
 
-<img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/Nino3SST_wave2.png" alt="Quartile Contoured" width=100%>
+<img src="images/normalizeddata/Nino3SST_wave2.png" alt="Quartile Contoured" width=100%>
 
   
 ##### General Comments
@@ -96,12 +96,12 @@ M_6 Mooring
 
 Data Source = 03sg5j_0114m_detide_f35.nc
 
-<img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/M6_P_1_wave2.png" alt="M6_Quartile Contoured" width=100%>   
+<img src="images/normalizeddata/M6_P_1_wave2.png" alt="M6_Quartile Contoured" width=100%>   
 
 Normalized data.  Contour intervals are at quartiles [0, .25. .50, .75, .95]. 95% Confidence Interval is contoured against a rednoise spectrum of alpha=.987 from `lag1 = (alpha1 + sqrt(alpha2))/2`
 
 
-<img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/M6_P_1_varcont_wave2.png" alt="M6_variance_cont" width=100%>   
+<img src="images/normalizeddata/M6_P_1_varcont_wave2.png" alt="M6_variance_cont" width=100%>   
 
 Normalized data.  Contour intervals are at [0,1,2,5,10].  95% Confidence Interval is contoured against a rednoise spectrum of alpha=.987
 
@@ -123,11 +123,11 @@ From the data with tides still existant diurnal and semidiurnal tides are domina
 
 __Reanalysis__ sfc pressure anomalies
 
-<img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/Reanalyisis_varcont_wave2.png" alt="Reanalysis_sfc_anom" width=100%>   
+<img src="images/normalizeddata/Reanalyisis_varcont_wave2.png" alt="Reanalysis_sfc_anom" width=100%>   
 
 __Reanalysis__ 2-8 day scale averaged power (red) vs M6 2-8 day scale averaged power (black)
 
-<img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/Reanalyisis_scaleave_comp.png" alt="Reanalysis_v_M6" width=100%>   
+<img src="images/normalizeddata/Reanalyisis_scaleave_comp.png" alt="Reanalysis_v_M6" width=100%>   
 
 Preliminary correlation between the two using a scipy module `sp.stats.pearsonr(scale_ave1[0:-1:4], scale_ave2[130:474])` is .50   
 
