@@ -4,7 +4,7 @@ Wavelet Analysis (CWT):
 ##### Requirements to run analysis again
 * Wavelet Analysis Routine [https://github.com/aaren/wavelets](https://github.com/aaren/wavelets) (modifications have been made to calculate significance contours - the original package is not in this repository)
 * brewer2mpl for colormaps [https://github.com/jiffyclub/brewer2mpl](https://github.com/jiffyclub/brewer2mpl)
-* Standard scientific packages (scipy, numpy, matplotlib) - scipy is used for autogression coefs
+* Standard scientific packages (scipy, numpy, matplotlib) - scipy is used for autogression coefs and inverse chi_squared test
 * User writen wave_signif module modeled after matlab code from Univ Colorado
 
 
