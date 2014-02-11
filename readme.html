@@ -311,9 +311,9 @@ sup {
 <h5>Requirements to run analysis again</h5>
 
 <ul>
-<li>Wavelet Analysis Routine <a href="https://github.com/aaren/wavelets">https://github.com/aaren/wavelets</a> (modifications have been made to calculate significance contours)</li>
+<li>Wavelet Analysis Routine <a href="https://github.com/aaren/wavelets">https://github.com/aaren/wavelets</a> (modifications have been made to calculate significance contours - the original package is not in this repository)</li>
 <li>brewer2mpl for colormaps <a href="https://github.com/jiffyclub/brewer2mpl">https://github.com/jiffyclub/brewer2mpl</a></li>
-<li>Standard scientific packages (scipy, numpy, matplotlib) - scipy is used for autogression coefs</li>
+<li>Standard scientific packages (scipy, numpy, matplotlib) - scipy is used for autogression coefs and inverse chi_squared test</li>
 <li>User writen wave_signif module modeled after matlab code from Univ Colorado</li>
 </ul>
 
@@ -371,11 +371,11 @@ sig95 = power / sig95         # where ratio &gt; 1, power is significant
 Using Nino3SST seasonal anomalies from the Univ of Colorado matlab code.  <br/>
 If plotting normalized data with Variance Contours (like TC_98 fig2a)</p>
 
-<p><img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/Nino3SST_varcont_wave2.png" alt="Variance Contoured" width=100%></p>
+<p><img src="images/normalizeddata/Nino3SST_varcont_wave2.png" alt="Variance Contoured" width=100%></p>
 
 <p>If plotting normalized data with quartile contours (like wavelet website)</p>
 
-<p><img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/Nino3SST_wave2.png" alt="Quartile Contoured" width=100%></p>
+<p><img src="images/normalizeddata/Nino3SST_wave2.png" alt="Quartile Contoured" width=100%></p>
 
 <h5>General Comments</h5>
 
@@ -404,13 +404,15 @@ and 3rd quartile)
 
 <p>Data Source = 03sg5j_0114m_detide_f35.nc</p>
 
-<p><img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/M6_P_1_wave2.png" alt="M6_Quartile Contoured" width=100%></p>
+<p>The top pannels are the anomaly timeseries (red) and the reconstructed wavelet analysis timeseries (blue) with the differences plotted in black. The right panel is the global time-averaged power in blue with the 95% confidence line plotted as a black dashed line.</p>
 
-<p>Normalized data.  Contour intervals are at quartiles [0, .25. .50, .75, .95]. 95% Confidence Interval is contoured against a rednoise spectrum of alpha=.987 from <code>lag1 = (alpha1 + sqrt(alpha2))/2</code></p>
+<p><img src="images/normalizeddata/M6_P_1_wave2.png" alt="M6_Quartile Contoured" width=100%></p>
 
-<p><img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/M6_P_1_varcont_wave2.png" alt="M6_variance_cont" width=100%></p>
+<p>Normalized data.   The bottom panel is the wavelet power with the contour intervals at quartiles [0, .25. .50, .75, .95]. 95% Confidence Interval is contoured against a rednoise spectrum of alpha=.987 from <code>lag1 = (alpha1 + sqrt(alpha2))/2</code>.</p>
 
-<p>Normalized data.  Contour intervals are at [0,1,2,5,10].  95% Confidence Interval is contoured against a rednoise spectrum of alpha=.987</p>
+<p><img src="images/normalizeddata/M6_P_1_varcont_wave2.png" alt="M6_variance_cont" width=100%></p>
+
+<p>Normalized data.  The bottom panel is the wavelet power with the contour intervals at power/variance levels [0,1,2,5,10].  95% Confidence Interval is contoured against a rednoise spectrum of alpha=.987</p>
 
 <h5>For fun I plotted the original data which wasn't detided</h5>
 
@@ -430,29 +432,44 @@ and 3rd quartile)
 
 <p><strong>Reanalysis</strong> sfc pressure anomalies</p>
 
-<p><img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/Reanalyisis_varcont_wave2.png" alt="Reanalysis_sfc_anom" width=100%></p>
+<p><img src="images/normalizeddata/Reanalyisis_varcont_wave2.png" alt="Reanalysis_sfc_anom" width=100%></p>
 
 <p><strong>Reanalysis</strong> 2-8 day scale averaged power (red) vs M6 2-8 day scale averaged power (black)</p>
 
-<p><img src="/Users/bell/Programs/Python/waveletanalysis/images/normalizeddata/Reanalyisis_scaleave_comp.png" alt="Reanalysis_v_M6" width=100%></p>
+<p><img src="images/normalizeddata/Reanalyisis_scaleave_comp.png" alt="Reanalysis_v_M6" width=100%></p>
 
 <p>Preliminary correlation between the two using a scipy module <code>sp.stats.pearsonr(scale_ave1[0:-1:4], scale_ave2[130:474])</code> is .50</p>
 
 <p>My guess is the 2-8 day band is somewhat synoptic and the 14-18 day band is tidal (M20 tide?).</p>
+
+<h3>Todo:</h3>
+
+<p>Completed: Calculate global wavelet significance and plot
+Updated ChiSquare_Inverse test to use scipy package if desired</p>
 
 <h5>Reference</h5>
 
 <p>Although I did not use the Matlab/IDL/Fortran Code - I utilized it as a source thus:</p>
 
 <ul>
-<li>Notice: Please acknowledge the use of this software in any publications:
-''Wavelet software was provided by C. Torrence and G. Compo, and is available at URL: http://atoc.colorado.edu/research/wavelets/''. Please send a copy of such publications to either C. Torrence or G. Compo:</li>
+<li><p>Notice: Please acknowledge the use of this software in any publications:</p>
+
+<p>  'Wavelet software was provided by C. Torrence and G. Compo, and is available at URL: http://atoc.colorado.edu/research/wavelets/'. Please send a copy of such publications to either C. Torrence or G. Compo:</p></li>
 </ul>
 
 
-<h3>Todo:</h3>
+<h3>License</h3>
 
-<p>Completed: Calculate global wavelet significance and plot
-Updated ChiSquare_Inverse test to use scipy package if desired</p>
+<p>The MIT License (MIT)</p>
+
+<p>Copyright (c) 2013 Aaron O'Leary (dev@aaren.me)</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 </body>
 </html>

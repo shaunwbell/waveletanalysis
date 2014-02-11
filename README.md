@@ -96,14 +96,16 @@ M_6 Mooring
 
 Data Source = 03sg5j_0114m_detide_f35.nc
 
+The top pannels are the anomaly timeseries (red) and the reconstructed wavelet analysis timeseries (blue) with the differences plotted in black. The right panel is the global time-averaged power in blue with the 95% confidence line plotted as a black dashed line.
+
 <img src="images/normalizeddata/M6_P_1_wave2.png" alt="M6_Quartile Contoured" width=100%>   
 
-Normalized data.  Contour intervals are at quartiles [0, .25. .50, .75, .95]. 95% Confidence Interval is contoured against a rednoise spectrum of alpha=.987 from `lag1 = (alpha1 + sqrt(alpha2))/2`
+Normalized data.   The bottom panel is the wavelet power with the contour intervals at quartiles [0, .25. .50, .75, .95]. 95% Confidence Interval is contoured against a rednoise spectrum of alpha=.987 from `lag1 = (alpha1 + sqrt(alpha2))/2`.   
 
 
 <img src="images/normalizeddata/M6_P_1_varcont_wave2.png" alt="M6_variance_cont" width=100%>   
 
-Normalized data.  Contour intervals are at [0,1,2,5,10].  95% Confidence Interval is contoured against a rednoise spectrum of alpha=.987
+Normalized data.  The bottom panel is the wavelet power with the contour intervals at power/variance levels [0,1,2,5,10].  95% Confidence Interval is contoured against a rednoise spectrum of alpha=.987
 
 ##### For fun I plotted the original data which wasn't detided
 

@@ -215,10 +215,10 @@ def acf(series):
 if __name__ == "__main__":
     #(raw_data, x, dt, time, variance, time_base) = mooring_btm_press('/Users/bell/Data_Local/FOCI/Mooring/2003/samalga5/03sg5a_sg_0112m.nc')
     #fig_name_base = 'images/M6_P_1wtide'
-    #(raw_data, x, dt, time, variance, time_base) = mooring_btm_press('/Users/bell/Data_Local/from_phyllis/03sg5j_0114m_detide_f35.nc') 
-    #fig_name_base = 'images/M6_P_1'
-    (raw_data, x, dt, time, variance, time_base) = example()
-    fig_name_base = 'images/Nino3SST'
+    (raw_data, x, dt, time, variance, time_base) = mooring_btm_press('/Users/bell/Data_Local/from_phyllis/03sg5j_0114m_detide_f35.nc') 
+    fig_name_base = 'images/M6_P_1'
+    #(raw_data, x, dt, time, variance, time_base) = example()
+    #fig_name_base = 'images/Nino3SST'
 
 """-----------------------------wavelet analysis           ---------------------------"""
 

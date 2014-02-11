@@ -84,7 +84,7 @@ def plot_wavetransf(wa, T, S, sig95, time_base, plot_percentile=False):
     
     return (plt, fig)
     
-def plot_wavetransf_time(x, wa, T, S, sig95, gs, signif_g, time_base, plot_percentile=False):
+def plot_wavetransf_time(x, wa, T, S, sig95, gs, signif_g, time_base, ylabel='Pressure (mb)', plot_percentile=False):
     """plotting contours w/global and timeseries"""
 
     fig = plt.figure(2)
@@ -101,6 +101,7 @@ def plot_wavetransf_time(x, wa, T, S, sig95, gs, signif_g, time_base, plot_perce
     levels = [-99, 1] # values greater than 1 are significant
     plt.contour(T, S, sig95,levels, colors='black', linewidth=5)
     ax.set_yscale('log')
+    ax.set_ylabel('Scales')
     ax.grid(True)
 
     # put the ticks at powers of 2 in the scale
@@ -122,6 +123,7 @@ def plot_wavetransf_time(x, wa, T, S, sig95, gs, signif_g, time_base, plot_perce
     ax.set_xlim([wa.time.min(), wa.time.max()])
     ax.set_xticklabels([])
     ax.grid(True)
+    ax.set_ylabel(ylabel)
     ax2= ax.twinx()
     p2 = ax2.plot(wa.time,x-wa.reconstruction(), 'k')
     ax2.set_xlim([wa.time.min(), wa.time.max()])
