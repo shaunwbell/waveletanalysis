@@ -114,7 +114,7 @@ def global_wave_signif(Y,dt,scale1,lag1=0.0,sigtest=1, dof=0, siglvl=0.95):
     return(signif,fft_theor)
     
     
-def chisquare_inv(P,V, scipy=False):
+def chisquare_inv(P,V, scipy=True):
     """ Translated from chisquare_inv.m
         Originally coded by C. Torrence January 1998 
         

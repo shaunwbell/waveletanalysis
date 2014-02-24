@@ -5,6 +5,7 @@ Wavelet Analysis (CWT):
 * Wavelet Analysis Routine [https://github.com/aaren/wavelets](https://github.com/aaren/wavelets) (modifications have been made to calculate significance contours - the original package is not in this repository)
 * brewer2mpl for colormaps [https://github.com/jiffyclub/brewer2mpl](https://github.com/jiffyclub/brewer2mpl)
 * Standard scientific packages (scipy, numpy, matplotlib) - scipy is used for autogression coefs and inverse chi_squared test
+* netcdf4 - available as a part of the pythonxy and anaconda bundles (both free) or can be installed seperately (used for .nc data retrieval)
 * User writen wave_signif module modeled after matlab code from Univ Colorado
 
 #### Additional files in this directory   
@@ -139,8 +140,8 @@ My guess is the 2-8 day band is somewhat synoptic and the 14-18 day band is tida
 
 ### Todo:
 
-Completed: Calculate global wavelet significance and plot
-Updated ChiSquare_Inverse test to use scipy package if desired
+~~Calculate global wavelet significance and plot
+Updated ChiSquare_Inverse test to use scipy package if desired~~ Uses scipy for arbitrary DOF and significance level.
 
 ##### Reference
 
