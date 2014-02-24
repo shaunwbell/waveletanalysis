@@ -7,7 +7,9 @@ Wavelet Analysis (CWT):
 * Standard scientific packages (scipy, numpy, matplotlib) - scipy is used for autogression coefs and inverse chi_squared test
 * User writen wave_signif module modeled after matlab code from Univ Colorado
 
-
+#### Additional files in this directory   
+* wavelet_analy_09bsp2a_hourly and wavelet_analy_plot_hourly -> most common is that the data is in fractional days (with a simple to use serial date or epoch date) but may be reported hourly - these routines convert and use hourly data with fraction of hours for the analysis.
+* wavelet_analy_09bsp2a.py is project specific routine (no access to the data source) that has lots of examples of ingesting different data formats (.txt, .nc, etc.)
 
 #### Following a couple of different sources:
 

@@ -28,7 +28,7 @@ import brewer2mpl as b2m #colorbrewer maps
 
 #set up color map with brewer2mpl, not mandatory as matplotlib as the colorbrewer maps but
 # provides an easy way to limit the number of colors in a map
-bmap = b2m.get_map('Blues', 'Sequential', 5, reverse=False)
+bmap = b2m.get_map('Greens', 'Sequential', 5, reverse=False)
 bmap = bmap.mpl_colors
 
 """----------------------------- plots  ----------------------------------------------"""
@@ -44,8 +44,8 @@ def plot_wavetransf(wa, T, S, sig95, time_base, plot_percentile=False):
                                            stats.scoreatpercentile(wa.wavelet_power, 75), stats.scoreatpercentile(wa.wavelet_power, 95), 
                                            stats.scoreatpercentile(wa.wavelet_power, 100)], colors=bmap)
     else:
-        #use following to contour at "normalized variances" BAMS
-        csf =plt.contourf(T, S, wa.wavelet_power, levels=[ 0, 1,2,5,10], colors=bmap)
+        levels = [0,1,5,100,250,500,750]
+        csf =plt.contourf(T, S, wa.wavelet_power, levels=levels, colors=bmap)
     cbar = plt.colorbar(pad=.1, shrink=.5, format='%.4f', extend='both') #move and shrink colorbar
     levels = [-99, 1] # values greater than 1 are significant
     plt.contour(T, S, sig95,levels, colors='black', linewidth=5)
@@ -75,8 +75,9 @@ def plot_wavetransf(wa, T, S, sig95, time_base, plot_percentile=False):
 
     # shade the region between the edge and coi
     C, S = wa.coi
+    C = C /24.
     ax.fill_between(x=C, y1=S, y2=wa.scales.max(), color='gray', alpha=0.5)
-    ax.set_xlim(wa.time.min(), wa.time.max())
+    ax.set_xlim(wa.time.min() / 24., wa.time.max() / 24.)
         
     #plt.show()
     DefaultSize = fig.get_size_inches()
@@ -97,7 +98,8 @@ def plot_wavetransf_time(x, wa, T, S, sig95, gs, signif_g, time_base, ylabel='Pr
                                            stats.scoreatpercentile(wa.wavelet_power, 100)], colors=bmap)
     else:
         #use following to contour at "normalized variances" BAMS
-        csf =plt.contourf(T, S, wa.wavelet_power, levels=[ 0, 1,2,5,10], colors=bmap)
+        levels = [0,1,5,100,250,500,750]
+        csf =plt.contourf(T, S, wa.wavelet_power, levels=levels, colors=bmap)
     levels = [-99, 1] # values greater than 1 are significant
     plt.contour(T, S, sig95,levels, colors='black', linewidth=5)
     ax.set_yscale('log')
@@ -115,18 +117,20 @@ def plot_wavetransf_time(x, wa, T, S, sig95, gs, signif_g, time_base, ylabel='Pr
 
     # shade the region between the edge and coi
     C, S = wa.coi
+    C = C /24.
     ax.fill_between(x=C, y1=S, y2=wa.scales.max(), color='gray', alpha=0.5)
-    ax.set_xlim(wa.time.min(), wa.time.max())
+    ax.set_xlim(wa.time.min() / 24., wa.time.max() / 24.)
+
     """
     ax = plt.subplot2grid((3, 4), (0, 0), colspan=3, rowspan=1)
-    p1 = ax.plot(wa.time,x,'r', wa.time, wa.reconstruction(), 'b')
-    ax.set_xlim([wa.time.min(), wa.time.max()])
+    p1 = ax.plot(wa.time / 24. ,x,'r', wa.time / 24. , wa.reconstruction(), 'b')
+    ax.set_xlim([wa.time.min() / 24., wa.time.max() / 24.])
     ax.set_xticklabels([])
     ax.grid(True)
     ax.set_ylabel(ylabel)
     ax2= ax.twinx()
-    p2 = ax2.plot(wa.time,x-wa.reconstruction(), 'k')
-    ax2.set_xlim([wa.time.min(), wa.time.max()])
+    p2 = ax2.plot(wa.time / 24. ,x-wa.reconstruction(), 'k')
+    ax2.set_xlim([wa.time.min() / 24., wa.time.max() / 24.])
     ax2.set_yticklabels([])
     """
     ax = plt.subplot2grid((3, 4), (1, 3), colspan=1, rowspan=2)
@@ -171,8 +175,8 @@ def plot_wavetransf_time_zoom(x, wa, T, S, sig95, gs, signif_g, time_base, scale
                                            stats.scoreatpercentile(wa.wavelet_power, 75), stats.scoreatpercentile(wa.wavelet_power, 95), 
                                            stats.scoreatpercentile(wa.wavelet_power, 100)], colors=bmap)
     else:
-        #use following to contour at "normalized variances" BAMS
-        csf =plt.contourf(T, S, wa.wavelet_power, levels=[ 0, 1,2,5,10], colors=bmap)
+        levels = [0,1,5,100,250,500,750]
+        csf =plt.contourf(T, S, wa.wavelet_power, levels=levels, colors=bmap)
     levels = [-99, 1] # values greater than 1 are significant
     plt.contour(T, S, sig95,levels, colors='black', linewidth=5)
     ax.set_yscale('log')
@@ -190,22 +194,21 @@ def plot_wavetransf_time_zoom(x, wa, T, S, sig95, gs, signif_g, time_base, scale
 
     # shade the region between the edge and coi
     C, S = wa.coi
+    C = C /24.
     ax.fill_between(x=C, y1=S, y2=wa.scales.max(), color='gray', alpha=0.5)
-    ax.set_xlim(wa.time.min(), wa.time.max())
-
+    ax.set_xlim(wa.time.min() / 24., wa.time.max() / 24.)
     """
     ax = plt.subplot2grid((3, 4), (0, 0), colspan=3, rowspan=1)
-    p1 = ax.plot(wa.time,x,'r', wa.time, wa.reconstruction(), 'b')
-    ax.set_xlim([wa.time.min(), wa.time.max()])
+    p1 = ax.plot(wa.time / 24. ,x,'r', wa.time / 24. , wa.reconstruction(), 'b')
+    ax.set_xlim([wa.time.min() / 24., wa.time.max() / 24.])
     ax.set_xticklabels([])
     ax.grid(True)
     ax.set_ylabel(ylabel)
     ax2= ax.twinx()
-    p2 = ax2.plot(wa.time,x-wa.reconstruction(), 'k')
-    ax2.set_xlim([wa.time.min(), wa.time.max()])
+    p2 = ax2.plot(wa.time / 24. ,x-wa.reconstruction(), 'k')
+    ax2.set_xlim([wa.time.min() / 24., wa.time.max() / 24.])
     ax2.set_yticklabels([])
     """
-
     ax = plt.subplot2grid((3, 4), (1, 3), colspan=1, rowspan=2)
     p1 = ax.plot(gs,wa.scales, signif_g, wa.scales, 'k--')
     ax.set_yscale('log')
@@ -242,7 +245,7 @@ def scaleogram(wa):
     fig = plt.figure(3)
     ax = plt.subplot(1,1,1)
     csf = plt.imshow(wa.wavelet_power,  
-            cmap='jet', aspect='auto', origin='lower', extent=[wa.time.min(),wa.time.max(),wa.scales.min(),wa.scales.max()])
+            cmap='jet', aspect='auto', origin='lower', extent=[wa.time.min() / 24.,wa.time.max() / 24.,wa.scales.min(),wa.scales.max()])
     ax.set_ylim(ax.get_ylim()[::-1]) #this reverses the yaxis (i.e. deep at the bottom)
     cbar = plt.colorbar()
     

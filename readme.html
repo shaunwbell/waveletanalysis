@@ -301,6 +301,9 @@ sup {
 		word-wrap: break-word;
 	}
 }
+
+.break { page-break-before: always; }
+
 </style>
 <title>Requirements to run analysis again</title>
 <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax:{inlineMath:[['$$$','$$$']]}});</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -315,6 +318,14 @@ sup {
 <li>brewer2mpl for colormaps <a href="https://github.com/jiffyclub/brewer2mpl">https://github.com/jiffyclub/brewer2mpl</a></li>
 <li>Standard scientific packages (scipy, numpy, matplotlib) - scipy is used for autogression coefs and inverse chi_squared test</li>
 <li>User writen wave_signif module modeled after matlab code from Univ Colorado</li>
+</ul>
+
+
+<h4>Additional files in this directory</h4>
+
+<ul>
+<li>wavelet_analy_09bsp2a_hourly and wavelet_analy_plot_hourly -> most common is that the data is in fractional days (with a simple to use serial date or epoch date) but may be reported hourly - these routines convert and use hourly data with fraction of hours for the analysis.</li>
+<li>wavelet_analy_09bsp2a.py is project specific routine (no access to the data source) that has lots of examples of ingesting different data formats (.txt, .nc, etc.)</li>
 </ul>
 
 
