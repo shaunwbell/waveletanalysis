@@ -2,8 +2,12 @@
 """
  wave_sig.py
  
+ References:
+ -----------
+ 
  See "http://paos.colorado.edu/research/wavelets/"
  Written January 1998 by C. Torrence
+ 
  Translated to Python 2014 
 
    Using Anaconda packaged Python

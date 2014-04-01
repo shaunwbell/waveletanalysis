@@ -193,19 +193,6 @@ def plot_wavetransf_time_zoom(x, wa, T, S, sig95, gs, signif_g, time_base, scale
     ax.fill_between(x=C, y1=S, y2=wa.scales.max(), color='gray', alpha=0.5)
     ax.set_xlim(wa.time.min(), wa.time.max())
 
-    """
-    ax = plt.subplot2grid((3, 4), (0, 0), colspan=3, rowspan=1)
-    p1 = ax.plot(wa.time,x,'r', wa.time, wa.reconstruction(), 'b')
-    ax.set_xlim([wa.time.min(), wa.time.max()])
-    ax.set_xticklabels([])
-    ax.grid(True)
-    ax.set_ylabel(ylabel)
-    ax2= ax.twinx()
-    p2 = ax2.plot(wa.time,x-wa.reconstruction(), 'k')
-    ax2.set_xlim([wa.time.min(), wa.time.max()])
-    ax2.set_yticklabels([])
-    """
-
     ax = plt.subplot2grid((3, 4), (1, 3), colspan=1, rowspan=2)
     p1 = ax.plot(gs,wa.scales, signif_g, wa.scales, 'k--')
     ax.set_yscale('log')
@@ -313,8 +300,93 @@ def plot2dvar(data, x, y):
 
     ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
     fig.autofmt_xdate()
+
+    DefaultSize = fig.get_size_inches()
+    fig.set_size_inches( (DefaultSize[0]*2, DefaultSize[1]) )
+    
+    return(plt, fig)
+
+def timeseries_comp(data1, data2, time , ylabel):
+
+    fig = plt.figure(11)
+    ax = plt.subplot2grid((3, 4), (1, 0), colspan=3, rowspan=2)
+    p = ax.plot(time,data1)
+    plt.setp(p,'color', 'k', 'linestyle', '-', 'linewidth', .5)
+    p= ax.plot(time, data2)
+    plt.setp(p, 'color', 'r', 'linestyle', '-','linewidth', 2,)
+    ax.set_xlim([time.min(), time.max()])
+    ax.grid(True)
+
+    ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
+    #fig.autofmt_xdate()
+
+    ax.set_ylabel(ylabel)
+    ax.set_xlabel('Time (UTC)')
+
     DefaultSize = fig.get_size_inches()
     fig.set_size_inches( (DefaultSize[0]*2, DefaultSize[1]) )
 
     return(plt, fig)
 
+
+def plot_xwt_wavetransf(power, time, wa, T, S, sig95, pangle, time_base, scalemin=0, scalemax=6, ylabel='Pressure (mb)', plot_percentile=False):
+    """plotting WaveTransform Power with confidence interval contour and phase vectors"""
+
+    fig = plt.figure(10)
+    ax = plt.subplot(1,1,1)
+    if plot_percentile:
+        #use following to contour at "percentiles variances" when using non-normalized data to match web output
+        csf =plt.contourf(T, S, power, levels=[ 0, stats.scoreatpercentile(power, 25), stats.scoreatpercentile(power, 50),
+                                           stats.scoreatpercentile(power, 75), stats.scoreatpercentile(power, 95), 
+                                           stats.scoreatpercentile(power, 100)], colors=bmap)
+    else:
+        #use following to contour at "normalized variances" BAMS
+        csf =plt.contourf(T, S, power, levels=[ 0, .2,.4,.6,.8,1], colors=bmap)
+    cbar = plt.colorbar(pad=.1, shrink=.5, format='%.4f', extend='both') #move and shrink colorbar
+    levels = [-99, 1] # values greater than 1 are significant
+    plt.contour(T, S, sig95,levels, colors='black', linewidths=1)
+    ax.set_yscale('log')
+    ax.grid(True)
+    
+    # plot phase relationship 
+    arr_dens = [60, 30]
+    arr_densx = np.round( len(time) / arr_dens[0] )
+    arr_densy = np.round( len(wa.scales) / arr_dens[1] )
+    if arr_dens == 0:
+        arr_dens = 1
+        
+    plt.quiver(T[::arr_densy,::arr_densx],S[::arr_densy,::arr_densx],(np.cos(pangle))[::arr_densy,::arr_densx],(np.sin(pangle))[::arr_densy,::arr_densx],\
+    width=.00125, headwidth=4, headlength=4, alpha=0.6, color='k')
+
+    # put the ticks at powers of 2 in the scale
+    ticks = np.unique(2 ** np.floor(np.log2(wa.scales)))[1:]
+    ax.yaxis.set_ticks(ticks)
+    ax.yaxis.set_ticklabels(ticks.astype(str))
+    ax.set_ylim(scalemax, scalemin)
+    ax.set_ylabel('scales')
+
+    # second y scale with equivalent fourier periods to scales
+    # except with the ticks at the powers of 2
+    ax_fourier = ax.twinx()
+    ax_fourier.set_yscale('log')
+    # match the fourier ticks to the scale ticks
+    ax_fourier.set_yticks(ticks)
+    ax_fourier.set_yticklabels(ticks.astype(str))
+    ax_fourier.set_ylabel('fourier period (%s)' % time_base )
+    fourier_lim = [wa.fourier_period(i) for i in ax.get_ylim()]
+    ax_fourier.set_ylim(fourier_lim)
+
+    ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
+    fig.autofmt_xdate()
+
+    # shade the region between the edge and coi
+    C, S = wa.coi
+    ax.fill_between(x=C, y1=S, y2=wa.scales.max(), color='gray', alpha=0.5)
+    ax.set_xlim(time.min(), time.max())
+        
+    #plt.show()
+    DefaultSize = fig.get_size_inches()
+    fig.set_size_inches( (DefaultSize[0]*2, DefaultSize[1]) )
+    
+    return (plt, fig)
+    

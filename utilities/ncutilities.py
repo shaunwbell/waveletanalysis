@@ -50,6 +50,9 @@ def ncclose(nchandle):
 def get_global_atts(nchandle):
     att_names = nchandle.ncattrs()
     return att_names
+
+def get_vars(nchandle):
+    return nchandle.variables.keys()
     
 def ncreadfile(nchandle, params):
 
@@ -64,7 +67,16 @@ def ncreadfile(nchandle, params):
             data[:,j] = data[:,j-1] * 0.0
     return (data)
     
+def ncreadfile_dic(nchandle, params):
+    data = {}
+    for j, v in enumerate(params): 
+        if v in nchandle.variables.keys(): #check for nc variable
+                data[v] = nchandle.variables[v][:]
 
+        else: #if parameter doesn't exist fill the array with zeros
+            data[v] = None
+    return (data)
+    
 def check_mand_atts(nchandle):
     
     att_names = get_global_atts(nchandle)
