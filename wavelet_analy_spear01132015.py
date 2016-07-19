@@ -147,12 +147,12 @@ def acf(series):
 """------------------------------ Data Selection --------------------------------------"""
 for level in range(0,11,1):
     print level
-
+    mooring = '12ckp2a'
     (raw_data, x, dt, time, variance, time_base, depth) = \
-    ADCP_2D('/Users/bell/Data_Local/from_phyllis/WaveletAnalysisBS2/wcp_data/11ckp3a/11ckp3a_ABS.txt', \
-    '/Users/bell/Data_Local/from_phyllis/WaveletAnalysisBS2/wcp_data/11ckp3a/11ckp3a_dates.txt', \
-    '/Users/bell/Data_Local/from_phyllis/WaveletAnalysisBS2/wcp_data/11ckp3a/11ckp3a_depth.txt', level=level) 
-    fig_name_base = 'images/11ckp3a_ADCP'
+    ADCP_2D('/Users/bell/Data_Local/from_phyllis/WaveletAnalysisBS2/wcp_data/'+mooring+'/'+mooring+'_ABS.txt', \
+    '/Users/bell/Data_Local/from_phyllis/WaveletAnalysisBS2/wcp_data/'+mooring+'/'+mooring+'_dates.txt', \
+    '/Users/bell/Data_Local/from_phyllis/WaveletAnalysisBS2/wcp_data/'+mooring+'/'+mooring+'_depth.txt', level=level) 
+    fig_name_base = 'images/'+mooring+'_ADCP'
 
     """-----------------------------wavelet analysis           ---------------------------"""
 
@@ -199,14 +199,14 @@ for level in range(0,11,1):
 
     plt, fig = wavelet_analy_plot.plot_wavetransf(wa, T, S, sig95, time_base, plot_percentile=True)
 
-    plt.savefig((fig_name_base + '_wave' + str(depth[level]).replace('.0','m') + '.png'), bbox_inches='tight', dpi = (100))
+    plt.savefig((fig_name_base + '_wave_' + str(depth[level]).replace('.0','m') + '.png'), bbox_inches='tight', dpi = (100))
     plt.close()
 
     """----------------- plotting contours w/global and timeseries ----------"""
 
     plt, fig = wavelet_analy_plot.plot_wavetransf_time_zoom(x, wa, T, S, sig95, gs, signif_g,
              time_base, scalemin=2, scalemax=256, ylabel='Echo Intens.', plot_percentile=True)
-    plt.savefig(fig_name_base + '_wave2' + str(depth[level]).replace('.0','m') + '.png', bbox_inches='tight', dpi = (100))
+    plt.savefig(fig_name_base + '_wave2_' + str(depth[level]).replace('.0','m') + '.png', bbox_inches='tight', dpi = (100))
     plt.close()
 
     """----------------- plotting contours w/global and timeseries ----------"""
@@ -223,7 +223,7 @@ for level in range(0,11,1):
     """----------------------- plotting power spectrum FFT --------------------------------"""
     (plt, fig) = wavelet_analy_plot.fft_power_spec(x, time_base, Fs=1)
 
-    plt.savefig(fig_name_base + '_FFTspec' + str(depth[level]).replace('.0','m') + '.png', bbox_inches='tight', dpi = (100))
+    plt.savefig(fig_name_base + '_FFTspec_' + str(depth[level]).replace('.0','m') + '.png', bbox_inches='tight', dpi = (100))
     plt.close()
 
     """
@@ -245,13 +245,13 @@ for level in range(0,11,1):
     scale_ave1 = power[indices].mean(axis=0)
 
     (plt, fig) = wavelet_analy_plot.scale_ave_timeseries(scale_ave1, wa.time / 24. , scales_bin)
-    plt.savefig(fig_name_base + '_scaleave' + str(depth[level]).replace('.0','m') + '.png', bbox_inches='tight', dpi = (100))
+    plt.savefig(fig_name_base + '_scaleave_' + str(depth[level]).replace('.0','m') + '.png', bbox_inches='tight', dpi = (100))
     plt.close()
 
     """-------------------------- plot orig data (2d) -------------------------------------"""
 
 (plt, fig) = wavelet_analy_plot.plot2dvar(raw_data, time / 24., depth)
-plt.savefig((fig_name_base + '_rawdata' + str(depth[level]).replace('.0','m') + '.png'), bbox_inches='tight', dpi = (100))
+plt.savefig((fig_name_base + '_rawdata_' + str(depth[level]).replace('.0','m') + '.png'), bbox_inches='tight', dpi = (100))
 plt.close()
 
 

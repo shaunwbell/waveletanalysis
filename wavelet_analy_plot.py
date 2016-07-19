@@ -18,6 +18,7 @@ import os
 #Science packages
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter
+import matplotlib.ticker as plticker
 import numpy as np
 from scipy import stats
 
@@ -193,6 +194,7 @@ def plot_wavetransf_time_zoom(x, wa, T, S, sig95, gs, signif_g, time_base, scale
     ax.fill_between(x=C, y1=S, y2=wa.scales.max(), color='gray', alpha=0.5)
     ax.set_xlim(wa.time.min(), wa.time.max())
 
+    
     ax = plt.subplot2grid((3, 4), (1, 3), colspan=1, rowspan=2)
     p1 = ax.plot(gs,wa.scales, signif_g, wa.scales, 'k--')
     ax.set_yscale('log')
@@ -205,7 +207,8 @@ def plot_wavetransf_time_zoom(x, wa, T, S, sig95, gs, signif_g, time_base, scale
     ax.set_yticklabels([])
     #ax.yaxis.set_ticklabels(ticks.astype(str))
     ax.set_ylim(scalemax, scalemin)
-
+    ax.set_xticks([0.00000001, 0.000001, 0.0001, 0.01, 1, 100, 10000, 1000000])
+    
     # second y scale with equivalent fourier periods to scales
     # except with the ticks at the powers of 2
     ax_fourier = ax.twinx()

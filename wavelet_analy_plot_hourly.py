@@ -60,7 +60,7 @@ def plot_wavetransf(wa, T, S, sig95, time_base, plot_percentile=False):
     ax.yaxis.set_ticks(ticks)
     ax.yaxis.set_ticklabels(ticks.astype(str))
     ax.set_ylim(256, 0.5)
-    ax.set_ylabel('scales')
+    ax.set_ylabel('Contoured Wavelets')
 
     # second y scale with equivalent fourier periods to scales
     # except with the ticks at the powers of 2
@@ -108,7 +108,7 @@ def plot_wavetransf_time(x, wa, T, S, sig95, gs, signif_g, time_base, ylabel='Pr
     levels = [-99, 1] # values greater than 1 are significant
     plt.contour(T, S, sig95,levels, colors='black', linewidth=5)
     ax.set_yscale('log')
-    ax.set_ylabel('Scales')
+    ax.set_ylabel('Contoured Wavelets')
     ax.grid(True)
 
     # put the ticks at powers of 2 in the scale
@@ -187,7 +187,7 @@ def plot_wavetransf_time_zoom(x, wa, T, S, sig95, gs, signif_g, time_base, scale
     levels = [-99, 1] # values greater than 1 are significant
     plt.contour(T, S, sig95,levels, colors='black', linewidth=5)
     ax.set_yscale('log')
-    ax.set_ylabel('Scales')
+    ax.set_ylabel('Contoured Wavelets')
     ax.grid(True)
 
     # put the ticks at powers of 2 in the scale
@@ -266,7 +266,7 @@ def plot_wavetransf_time_zoom_tbound(x, wa, T, S, sig95, gs, signif_g, time_base
     levels = [-99, 1] # values greater than 1 are significant
     plt.contour(T, S, sig95,levels, colors='black', linewidth=5)
     ax.set_yscale('log')
-    ax.set_ylabel('Scales')
+    ax.set_ylabel('Contoured Wavelets')
     ax.grid(True)
 
     # put the ticks at powers of 2 in the scale

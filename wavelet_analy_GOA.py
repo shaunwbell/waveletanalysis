@@ -124,10 +124,10 @@ def acf(series):
 """------------------------------ Data Selection --------------------------------------"""
 
 #for year in (2001, 2002, 2003, 2004, 2005):
-for year in (2002, 2003):
+for year in (2001, 2002, 2003):
 
     ### loop through every rcm an7/an9 file in a dir
-    stationID = 'globec2'
+    stationID = 'globec1'
     (allroot, allfile) = walk_dir('/Users/bell/Data_Local/FOCI/Mooring/%s/%s/' % (year, stationID) )
 
 
