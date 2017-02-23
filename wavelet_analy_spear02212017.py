@@ -147,7 +147,7 @@ def acf(series):
 """------------------------------ Data Selection --------------------------------------"""
 for level in range(0,40,1):
     print level
-    mooring = '15ckp9a'
+    mooring = '15ckp4a'
     (raw_data, x, dt, time, variance, time_base, depth) = \
     ADCP_2D('/Volumes/WDC_internal/Users/bell/in_and_outbox/pre_2014/from_phyllis/WaveletAnalysisBS2/spear_02212017/'+mooring+'_ABS.txt', \
     '/Volumes/WDC_internal/Users/bell/in_and_outbox/pre_2014/from_phyllis/WaveletAnalysisBS2/spear_02212017/'+mooring+'_dates.txt', \
